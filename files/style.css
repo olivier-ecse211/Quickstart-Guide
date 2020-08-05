@@ -1,0 +1,64 @@
+.content{
+ width: 80%;
+ margin: auto;
+ line-height: 1.6;
+ font-size: large;
+}
+
+h1{
+ text-align: center;   
+}
+
+a{
+ color: #028f02;
+ text-decoration: none;
+}
+
+
+.btt{
+ font-size: small;
+}
+
+figure{
+ width:70%;
+ text-align:center;
+ margin: auto;
+ display:block;
+}
+
+.code {
+ text-align:left;
+ border: 1px solid;
+ padding:1em;
+  width:50%;
+}
+
+.code figcaption{
+ border-top: 1px solid;
+ padding-top:1em;
+ text-align:center;
+}
+
+.figure img{
+ margin: 1em;
+}
+
+.contents{
+ margin-left: 2em;
+ padding-left: 1em;
+ padding-right: 1em;
+ float: right;
+ width: 30%;
+ border: 2px solid;
+ border-radius: 10px;
+ background-color: #EEE;
+}
+
+.contents a{
+ text-decoration: none;  
+}
+
+input {
+ width: auto;
+ margin: 8px 0;
+}
