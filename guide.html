@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 
@@ -22,27 +23,16 @@
 <h2 id="contents">Contents</h2>
 <ul>
   <li><a href="#background">Background</a></li>
-  <li><a href="#the-kit">Hardware - The Kit</a>
+  <li><a href="#the-kit">Simulated Hardware</a>
   <ul>
    <li><a href="#the-battery">The battery</a></li>
    <li><a href="#the-motors">The motors</a></li>
    <li><a href="#the-sensors">The sensors</a></li>
    <li><a href="#the-brick">The “Brick”</a></li>
-   <li><a href="#defective-components">Defective Components</a></li>
   </ul>
   </li>
-  <li><a href="#lejos">Software - LeJOS</a>
-  <ul>
-   <li><a href="#preparing-your-computer">Preparing your computer</a></li>
-   <li><a href="#installing-lejos-to-the-sd-card">Installing leJOS to the SD card</a></li>
-   <li><a href="#running-code-on-the-brick">Running code on the brick</a></li>
-   <li><a href="#resetting-the-ev3">Resetting the EV3</a></li>
-   <li><a href="#useful-information">Useful information</a></li>
-  </ul>
-  </li>
-  
 
-  <li><a href="#webots">Software - WeBots</a>
+  <li><a href="#webots">Software - WeBots and simlejos</a>
   <ul>
    <li><a href="#webots_preparingYourComputer">Preparing your computer</a></li>
    <li><a href="#webots_overview">Overview</a></li>
@@ -50,66 +40,60 @@
    <li><a href="#webots_writingacontroller">Writing a controller</a></li>
   </ul>
   </li>
-  <li><a href="#submissionInstructions">Submission Instructions</a></li>
 
 </ul>
 </div>
 
-
-
-
+<p><strong>Please read this entire document before starting!</strong></p>
 
 <h2 id="background">Background <a class="btt" href="#">[top]</a></h2>
 <hr>
 
-<p>The primary objective of this course is to learn about the <strong>design process</strong>. In fulfillment of that objective, lectures will teach the basic theory while labs will allow you to get the necessary practical experience, which will come in the form of designing an autonomous robot using the <a href="https://education.lego.com/en-us/products/lego-mindstorms-education-ev3-core-set-/5003400">LEGO Mindstorms EV3 kit</a> embedded system.</p>
+<p>The primary objective of this course is to learn about the <strong>design process</strong>.
+The lectures will teach the basic theory while labs will allow
+you to get the necessary practical experience, which will come in the form of designing an
+autonomous robot using a simulated <a
+href="https://education.lego.com/en-us/products/lego-mindstorms-education-ev3-core-set-/5003400"
+>LEGO Mindstorms EV3 kit</a> embedded system.</p>
 
-<p>The heart of Mindstorms is the LEGO “Brick”, which serves as a general purpose embedded controller with sensor inputs and motor outputs, operated by a simple user interface (UI) consisting of an LCD display and a set of push buttons. Think of the microcontroller in the “Brick” as a very basic computer with a small processor and a bit of memory, just enough to power a small robot.</p>
+<p>The heart of Mindstorms is the LEGO “Brick,” which serves as a general purpose embedded
+controller with sensor inputs and motor outputs. Think of the microcontroller in
+the “Brick” as a very basic computer with a small processor and a bit of memory, just
+enough to power a small robot.</p>
 
-<p>A microcontroller becomes an embedded system when you program it with software; as such, a large part of building an embedded system involves designing, writing and testing software. Every embedded system will have a <em>development environment</em> that gives you the basic tools you need to actually write the software. In ECSE202, you wrote simple Java programs using the Eclipse Integrated Development Environment (IDE). For this course, we have kept things the same. As you’ve no doubt noticed, Java runs on a lot of different devices, from Windows to macOS and your Android phone. This is because all Java code runs on a JVM (Java Virtual Machine), which translates Java code into a form that the specific device actually understands. This ability is often  referred to as “write once, run everywhere.” The JRE (Java Runtime Environment) includes the JVM and code specific to a device.</p>
+<p>A microcontroller becomes an embedded system when you program it with software; as such,
+a large part of building an embedded system involves designing, writing and testing software.
+Every embedded system will have a <em>development environment</em>. In ECSE202, you wrote
+simple Java programs
+using the Eclipse Integrated Development Environment (IDE). For this course, we have kept
+things the same. As you’ve no doubt noticed, Java runs on a lot of different devices, from
+Windows to macOS and your Android phone. This is because all Java code runs on a JVM (Java
+Virtual Machine), which translates Java code into a form that the specific device actually
+understands. This ability is often referred to as “write once, run everywhere.” The JRE
+(Java Runtime Environment) includes the JVM and code specific to a device.</p>
 
-<p>In this course, you will run Java on the simulated EV3 robot. As part of the JRE, leJOS provides various classes that allow you to use the robot’s motors, sensors and other components. These
+<p>In this course, you will run Java on the simulated EV3 robot.
+Simlejos provides various classes that allow you to use the robot’s motors, sensors
+and other components. These
 classes take care of many of the complex details that usually come up in
 robotics, allowing you to focus on building a robot and not, for
-instance, getting a motor to turn in the right direction.<!-- A plugin for
-Eclipse lets you write code on your computer and upload it to the leJOS
-environment easily.--></p>
-<!--
-<p>Unfortunately, the EV3 runs the Mindstorms operating system, which is
-intended for people without programming experience (e.g. late elementary
-to high school age) and doesn’t support Java, so we need to reconfigure
-it by installing the leJOS software. As the Brick runs the Mindstorms
-environment on top of Linux, all we need to do to install leJOS is to put
-it on an SD card. We will discuss how to do this later.</p>
--->
-<h2 id="the-kit">Hardware - The kit <a class="btt" href="#">[top]</a></h2>
+instance, getting a motor to turn in the right direction.</p>
+
+<h2 id="the-kit">Simulated Hardware<a class="btt" href="#">[top]</a></h2>
 <hr>
 
-<p>The kit we provide contains the “Brick” mentioned earlier, motors,
+<p>The simulated hardware includes the “Brick” mentioned earlier, motors,
 sensors and various LEGO parts.</p>
 
 <h3 id="the-battery">The battery <a class="btt" href="#">[top]</a></h3>
 
-<p>You will receive both AA batteries and a rechargeable battery pack,
-shown in Fig. 1b. The brick can be powered by either, but we
-recommend using the rechargeable battery in most cases. The battery can
-be charged with the included wall adapter, either by itself or while
-inserted into the brick. When both green and red LEDs are on, the
-battery is charging. When only the green LED is on, the battery is fully
-charged. Note that if the battery is in the brick while charging it may
-not reach 100% until the EV3 is powered off. <strong>We recommend keeping the
-battery plugged in as often as possible.</strong> In the leJOS software, you will
-see the battery voltage displayed in the top left corner as shown in
-Fig. 1a. The highest it can go is 8.0V; we recommend you
-start charging it once it gets below 7.0V. Try to avoid letting the
-battery die completely as this can damage it and reduce its charge
-capacity.</p>
+<p>Your simulated robot will contain a battery that must not be depleted.
+We will provide more information on this later.</p>
 
 <figure>
-<img style="width:40%" src="files/battery2.png">
 <img style="width:40%" src="files/battery1.png">
 <br>
-<figcaption>Figure 1: (a) The main menu with a fully charged battery and (b) the battery itself.</figcaption>
+<figcaption>Figure 1: The battery</figcaption>
 </figure> 
 
   
@@ -120,11 +104,9 @@ capacity.</p>
 
 <h3 id="the-motors">The motors <a class="btt" href="#">[top]</a></h3>
 
-<p>There are three types of motors in your kit: medium (Fig. 2a), large 
-EV3 (Fig. 2b) and large NXT (Fig. 2c). The large NXT motors are older 
-than the
-EV3 ones, but besides a difference in attachment points they are
-identical. The main difference between the large and medium sizes is
+<p>There are three types of motors that you can use: medium (Fig. 2a), large 
+EV3 (Fig. 2b) and large NXT (Fig. 2c). The main difference between the large
+and medium sizes is
 power and precision: the large ones are powerful, but not the most
 accurate. They are well suited for jobs like driving the entire robot
 around. The medium one by contrast is weaker but much more precise; you
@@ -171,7 +153,8 @@ ports labelled 1 - 4 on the bottom of the brick.</p>
 
 <h3 id="the-brick">The “Brick” <a class="btt" href="#">[top]</a></h3>
 
-<p>The “Brick” you receive, shown in Fig. 4, is an embedded system as described in the <a href="#background">background</a> section. The important features are as follows:</p>
+<p>The “Brick” you receive, shown in Fig. 4, is an embedded system as described in the
+<a href="#background">background</a> section. Its relevant features are as follows:</p>
 
 <figure>
 <img style="width:40%" src="files/ev3.png"><br>
@@ -180,400 +163,125 @@ ports labelled 1 - 4 on the bottom of the brick.</p>
 
 <ul>
   <li>
-    <p><strong>LCD</strong>: Used to display information.</p>
-  </li>
-  <li>
     <p><strong>Speaker</strong>: Can make beeps, useful in some labs to let you know
 what your code is doing. Also capable of playing the <em>Imperial
 March</em> from Star Wars.</p>
   </li>
   <li>
-    <p><strong>SD Card slot</strong>: For the SD card on which leJOS is installed.</p>
+    <p><strong>Ports A-D</strong>: Used for connecting motors.</p>
   </li>
   <li>
-    <p><strong>USB type-A</strong>: Used for the USB Wi-Fi adapter.</p>
-  </li>
-  <li>
-    <p><strong>USB mini-B</strong>: Used for connecting to a computer.</p>
-  </li>
-  <li>
-    <p><strong>Ports A-D</strong>: Compatible with the RJ-11 like wires you are provided
-for connecting motors.</p>
-  </li>
-  <li>
-    <p><strong>Ports 1-4</strong>: Same as the motor ports, except used for the various
-sensors.</p>
+    <p><strong>Ports 1-4</strong>: Used for the various sensors.</p>
   </li>
 </ul>
 
-<p>The brick can be turned on by pressing the center button for a second or
-two. In leJOS, it can be turned off by pressing the back (a.k.a. escape)
-button (top left) and confirming the shutdown command.</p>
 
-<h3 id="defective-components">Defective components <a class="btt" href="#">[top]</a></h3>
-
-<p>On rare occasions, one of your parts may be defective. If you believe
-this to be the case, show the problem to a TA in the lab to verify
-before exchanging the part for a new one at the counter where you
-originally picked up your kit.</p>
-
-
-<h2 id="lejos">Software - LeJOS <a class="btt" href="#">[top]</a></h2>
+<h2 id="lejos">Software - WeBots and simlejos<a class="btt" href="#">[top]</a></h2>
 <hr>
 
 <h3 id="preparing-your-computer">Preparing your computer <a class="btt" href="#">[top]</a></h3>
 
-<p>In order to work with the EV3, you need to set up your <em>development
-environment</em> as mentioned in the <a href="#background">background</a> section.</p>
+<p>In order to work with the simulated robot, you need to set up your development
+environment as follows.</p>
 
 <ol>
-<!--
-  <li>
-    <p>Download the file <code>leJOS_0.9.1_Package.zip</code> from MyCourses and
-extract the contents. The directory structure should look like this:</p>
+  <li> Install a <a href="https://www.oracle.com/java/technologies/javase-downloads.html"><b>Java Development Kit
+    (JDK)</b></a> if needed. As the robot controllers will be developed in Java, the JDK is required to
+    compile the code. You must use a 64-bit version of the JDK, version 11 or higher. OpenJDK works too.
+  </li><br> <!--As required by the simlejos JAR-->
 
-    <ul>
-      <li>Computer</li>
-      <li>Documentation</li>
-      <li>SD_Card</li>
-      <li><code>ecse211-eclipse-preferences.epf</code></li>
-    </ul>
+  <li> Install <a href="https://www.leocad.org/"><b>LeoCad</b></a>, a computer aided design software
+    used to build virtual LEGO assemblies which will be used to design the physical appearance of your robots.
+
+    <p>If you are using macOS or Windows, use the link above. If you are using Linux, depending on your distribution,
+    LeoCAD might also be available through your package manager. Some Linux distributions (ie, debian) package the
+    parts library for LeoCAD separately as "ldraw-parts".</p>
   </li>
-  <li>
-    <p>Copy the <code>leJOS_EV3_0.9.1-beta</code> folder
-found within the <code>Computer</code> folder to a location on your machine. Keep track of this location.</p>
+
+  <li> Install <a href="https://cyberbotics.com/"><b>Webots</b></a>, a robot simulation framework that we will use
+    to work with virtual robots.
+
+    <p>For macOS or Windows, use the link above. On Windows, select “Install for me only,” not for all users. 
+      The Linux version of Webots only needs to be extracted and the executable is in the main folder,
+      no installation required. <strong>Keep track of where you installed Webots.</strong></p>
+    
+    <p><emph>Please note that a lot of the complexity of Webots is abstracted away with the proto files that we provide,
+      but feel free to look at the implementation of the proto files or create your own.  We cover here the minimum
+      amount of information needed to complete the course, but Webots is a fun tool to play with.</emph></p>
   </li>
-  -->
   <li>
     <p>Install and setup Eclipse <strong>exactly</strong> as described here.</p>
 
-    <p><strong>Note:</strong> Many students have asked if they could use a previous Eclipse installation. The answer is <strong>no</strong>, because we do not want you to have Eclipse settings from a previous course/project. 
-We also do not want our custom settings from (c) to interfere with your other courses/projects.</p>
+    <p><strong>Note:</strong> Many students have asked if they could use a previous Eclipse installation. The answer is <strong>no</strong>,
+      because we do not want you to have Eclipse settings from a previous course/project. 
+      We also do not want our custom settings from step (c) below to interfere with your other courses/projects.</p>
 
     <p>a) Follow <a href="https://www.eclipse.org/downloads/packages/installer">these instructions</a>. The
 installer will ask you what version to install. “Eclipse IDE for
-Java EE (Enterprise) Developers” is sufficient for this course. Note that you will 
-need to install Java 8 or above (if you haven’t already) to run Eclipse.</p>
+Java EE (Enterprise) Developers” is sufficient for this course.</p>
 
     <p>b) When starting Eclipse for the first time, select (or create) a workspace folder that is dedicated for this course,
-so your other projects can have their own settings. Keep track of this 
-folder for step c below.</p>
+so your other projects can have their own settings.</p>
 
     <p>c) Configure Eclipse settings according to our requirements. Open Eclipse Preferences 
 and select Import (the button in the lower-left corner of the window with this arrow ↘), then choose 
-<code>ecse211-eclipse-preferences.epf</code>, which can be found in the zip file you downloaded
-from MyCourses. Select all the boxes.</p>
+<a href="files/ecse211-eclipse-preferences.epf"><code>ecse211-eclipse-preferences.epf</code></a>. Select all the boxes.</p>
 
     <p>d) <strong>Strongly recommended:</strong> Use the Eclipse dark theme to better distinguish source code elements (eg, variables, methods).
-If it is not already set, open Eclipse Preferences and select <code>General</code> (double-click) <code>→ Appearance → Theme → Dark → Apply and Close</code>. Restart Eclipse to fully apply the dark theme.</p>
-  </li>
-  <!--
-  <li>
-    <p>Install the Eclipse plugin. Open
-Eclipse, and navigate to <code>Help → Install New Software...</code>.
-Paste this link in the Work with… textbox: <code>http://lejos.sourceforge.net/tools/eclipse/plugin/ev3</code>.
-Then select Add… and enter <code>LeJOS EV3 Eclipse plugin</code> as a repository name. Check the “leJOS EV3 Support” box and follow the prompts.</p>
+If it is not already set, open Eclipse Preferences and select <code>General</code> (double-click) <code>→ Appearance → Theme → Dark → Apply and Close</code>.
+Restart Eclipse to fully apply the dark theme.</p>
 
-    <p>Select <code>Install anyway</code>
-when the warning about unsigned content appears. After installation,
-you need to tell the plugin where you installed leJOS as well as how
-to connect to your brick. The plugin settings page is called
-<code>leJOS EV3</code> and is part of the Eclipse “Preferences” window.
-Fig. 5 shows an example of how to set it up on a
-Linux system. Set it up as follows:</p>
+    <!-- TODO add internal link for checkstyle and spotbugs (generate with Jekyll) -->
+    <p>e) Add CheckStyle and SpotBugs to Eclipse following <a href="https://mcgill-dpm.github.io/website/EclipseCheckstyleSpotbugs">these
+      instructions</a>. These tools help you write better code.</p>
 
-    <ul>
-      <li>
-        <p>Make sure <code>EV3_HOME</code> is set properly to wherever you installed
-leJOS. This is the folder inside <code>Computer</code>.</p>
-      </li>
-      <li>
-        <p>The box “Run Tools in separate JVM” should be checked</p>
-      </li>
-      <li>
-        <p>Make sure “Use ssh and scp” is <em>not</em> checked</p>
-      </li>
-      <li>
-        <p>You will set the IP address after setting up LeJOS on the EV3, so ignore this for now.</p>
-      </li>
-    </ul>
-  </li>
-  -->
-</ol>
-<!--
-<figure>
-<img style="width:60%" src="files/ev3_settings.png"><br>
-<figcaption>Figure 5: The EV3 settings.</figcaption>
-</figure> 
--->
+    <strong>Come back to these last two steps once you have opened controller code in Eclipse.</strong>
 
-<!--
-<h3 id="installing-lejos-to-the-sd-card">Installing leJOS to the SD card <a class="btt" href="#">[top]</a></h3>
-
-<p>The next step is to install leJOS onto the SD card.  Please note, The SD card you receive may already have leJOS on it, but it is often in some broken state after being used for an entire semester so it needs to be replaced. The SD cards provided to you are often corrupt and are not reliable, so we recommend purchasing your own microSD card (which you can keep!), with a capacity that <strong>does not exceed 16GB</strong>.</p>
-
-<p><strong>If you have problems, post in the discussion board or ask a classmate for assistance.</strong></p>
-
-<ol>
-  <li>
-    <p>Insert the SD card into a card reader connected to (or part of) your
-computer.</p>
-  </li>
-  <li>
-    <p>Format the entire SD card as follows:</p>
-
-    <ul>
-      <li>
-        <p><strong>Partition table</strong>: MS-DOS</p>
-      </li>
-      <li>
-        <p><strong>Partition layout</strong>: a single FAT32 partition occupying
-the entire SD card, i.e. 16GB or 14 GiB</p>
-      </li>
-    </ul>
-
-    <p>Your OS should have a tool that can do this.
- Alternatively, there are many third party tools that can do it
- for you. Feel free to look at the many good guides for SD
- card formatting online if you have trouble. Be careful to
- select the correct device, as otherwise you could end up
- <em>wiping out your operating system</em>.</p>
-
-    <p><strong>Note:</strong> You will need to delete all partitions from the SD card to
- perform this step successfully. To do that in Linux, use a tool like
- <code>gparted</code>. In Windows, use <code>Computer Management</code> (eg, in the image
- below, delete partitions <code>D:</code> and <code>E:</code> under Disk 10).</p>
-
-<figure>
-<img style="width:75%" src="files/comp_mgmt.png"><br>
-<figcaption>Figure 6: Partition layout.</figcaption>
-</figure> 
- 
-
-  </li>
-  <li>
-    <p>Copy all files from the folder <code>SD_Card</code> to the
-SD card.</p>
-  </li>
-  <li>
-    <p>Safely eject the card using the appropriate method for your
-operating system.</p>
-  </li>
-  <li>
-    <p>Insert the card into the SD card slot on the brick, making sure the
-brick is powered off.</p>
-  </li>
-  <li>
-    <p>Turn the brick on (center button) and wait for leJOS to go through the installation
-procedure, which will take about 10 minutes.</p>
-  </li>
-  <li>
-    <p>When it’s done, you should see the screen as shown in Fig. 7.</p>
-  </li>
-</ol>
-
-<figure>
-<img style="width:35%" src="files/battery2.png"><br>
-<figcaption>Figure 7: The EV3 screen after leJOS installs.</figcaption>
-</figure> 
-
-<h3 id="running-code-on-the-brick">Running code on the brick <a class="btt" href="#">[top]</a></h3>
-
-<p>Now that leJOS is installed, the next step is to get some code running
-on the brick. To do this, we need to establish a connection between your
-computer and the brick. There are three different ways to do this: USB,
-Bluetooth or WiFi. As all of them use the Internet Protocol, any
-software that works with one will work with the others as long as the
-settings are correct. Since you will need Wi-Fi for debugging starting in Lab 2,
-we will explain how to set it up here.</p>
-
-<ol>
-  <li>
-    <p>With the brick turned off, insert the Wi-Fi adapter.
-Then turn the brick on and connect to the DPM Wi-Fi 
-network using the Wi-Fi menu. The password is <strong>dddpppmmm</strong>. Connect your computer 
-to the same network. Note that you will lose internet access. An alternative is to
-use a personal hotspot.</p>
-  </li>
-  <li>
-    <p>In Eclipse Preferences → leJOS EV3, check and fill the “Connect to named brick”
-field with the IP address shown on the third line of the EV3 LCD. It should be in 
-the 192.168.2.x range.</p>
-
-    <p><strong>Note:</strong> Every time you switch on the brick, check whether its IP address has changed.
-If so, update the above setting.</p>
-  </li>
-  <li>
-    <p>Create a new Eclipse project as follows:</p>
-
-    <ol>
-      <li>
-        <p>Open Eclipse and navigate to
-<code>File → New → Project...</code></p>
-      </li>
-      <li>
-        <p>Select <code>leJOS EV3 Project</code></p>
-      </li>
-      <li>
-        <p>Name it <code>HelloWorld</code> and select <code>JavaSE-1.7</code> for
-<code>Use an execution environment JRE</code>.  If you do not specify <code>JavaSE-1.7</code>, your code will crash immediately when you run it on the brick. Click <code>Finish</code>. An example of the page is shown in Fig. 8.</p>
-      </li>
-      <li>
-        <p>Create a new class named <code>HelloWorld</code> in the package
-<code>ca.mcgill.ecse211.project</code>.</p>
-      </li>
-    </ol>
+    <p>f) Set the correct build path for the Webots Controller jar file if needed (if the project has errors shown by
+    ❌ or ❗). To do that, right click the project and select
+    <code>Properties → Java Build Path → Controller.jar → Edit</code>, and find the file. It is under your webots
+    folder, in <code>lib/controller/java</code>.</p>
     
-<figure>
-<img style="width:45%" src="files/new_project_settings.png"><br>
-<figcaption>Figure 8: Creating a new EV3 project.</figcaption>
-</figure> 
+    The default path on many Linux distributions is <code>/usr/local/webots/lib/controller/java</code>.<br>
+    The default path on Windows is <code>C:\Users\USERNAME\AppData\Local\Programs\Webots\lib\controller\java</code>.<br><br>
 
+    <figure>
+      <img style="width:70%" src="files/build_path.png"><br>
+      <figcaption>Figure 6: Eclipse project Java build path</figcaption>
+    </figure> 
 
-    <ol>
-      <li>
-        <p>Add some code so that your program prints to the LCD and waits for a button to be pressed to exit.  If you don’t wait for a button press the program will exit immediately and you will end up looking at the leJOS menu rather than the text specified in your code. Listing 1 provides an example.</p>
+    <p>g) Add the Webots Java source code to Eclipse. Go to <code>webots/resources/languages/java</code>. Create
+    the following nested directory structure there: <code>com/cyberbotics/webots/controller</code>, ie, create a
+    <code>com</code> folder, with a <code>cyberbotics</code> folder inside it, and so on. Copy the content of
+    <code>SWIG_generated_files</code> to the <code>controller</code> folder you just made (see below).</p>
 
-<figure class="code">
-  <pre>
-package ca.mcgill.ecse211.helloworld;
+    <figure>
+      <img style="width:70%" src="files/webots_source_folder_structure.png"><br>
+      <figcaption>Figure 7: Webots Java source code structure</figcaption>
+    </figure>
 
-import lejos.hardware.Button;
+    <p>Now in Eclipse, open a java source file and enter this code in a method (you can delete this line later):
+      <pre>    com.cyberbotics.webots.controller.Accelerometer a;</pre>
 
-/**
- * HelloWorld example: prints to screen and waits for button press.
- */
-public class HelloWorld {
-
-    public static void main(String[] args) {
-        System.out.println("Hello World!");
-        Button.waitForAnyPress();
-    }
-
-}
-  </pre>
-  <figcaption>Listing 1: HelloWorld example code.</figcaption>
-</figure>
-
-      </li>
-      <li>
-        <p>Run the project, selecting the <code>leJOS EV3 Program</code> option.
-This tells Eclipse that it needs to
-run your code on the EV3 and not your laptop.</p>
-      </li>
-      <li>
-        <p>Assuming the Eclipse plugin is set up as in step 5 of <a href="#preparing-your-computer">Section 3</a>, the code should be compiled and
-uploaded to the brick.</p>
-      </li>
-      <li>
-        <p>Verify that the LCD shows “Hello World!” and exit the program by
-pressing any button on the EV3.</p>
-      </li>
-    </ol>
+    The code should compile (ie, no red underline), if not, make sure you have performed step (4f) correctly.
+    Right-click <code>Accelerometer</code> and select <code>Open declaration</code>, or use the shortcut
+    (F3 or Ctrl-Click). Then select <code>Attach source</code>, and find the 
+    <code>webots/resources/languages/java</code> folder from before. You should now see the source code of
+    the Webots <code>Accelerometer</code> class.
+    </p>
   </li>
 </ol>
 
-<p>Note that the desktop computers in the lab only support USB. To set 
-that up, plug in the brick to the computer with the provided USB cable 
-and check the network settings. There should be a new interface with an 
-IP address in the
-<code>10.0.1.x</code> range in addition to the normal Ethernet
-connection. If you either don’t see a new interface or it does not
-have an IP address in the correct range, the computer cannot see
-the EV3. This is likely a driver, USB port or firewall issue.</p>
-
-<h3 id="resetting-the-ev3">Resetting the EV3 <a class="btt" href="#">[top]</a></h3>
-
-<p>Over the course of the semester, you may at some point need to reset 
-the EV3 brick.
-The cause might be anything from an infinite loop in your code that 
-doesn’t let you quit to a bug in leJOS. Whatever the cause, we present 
-several ways of resetting the robot if you
-can’t get it to respond. We recommend trying them in the order 
-presented, so the last
-step should only be done if all else fails.</p>
-<ol>
-  <li><strong>Soft Reset:</strong> Hold the middle and down buttons simultaneously. Your program should
-exit and return to the main menu.</li>
-  <li><strong>Stop Program:</strong> Using the EV3 control panel (see below), connect to your robot and click on the button named Stop Program.</li>
-  <li><strong>Hard Reset:</strong> Hold the middle and back buttons simultaneously until the robot starts rebooting.</li>
-  <li><strong>Remove battery:</strong> The last way of resetting the brick is to simply remove and reinsert the battery.</li>
-</ol>
-
-<p>The last two steps don’t allow leJOS to shutdown nicely, and can 
-cause the SD card to get corrupted. If you experience weird behaviour 
-after trying one of the last two steps, you
-may need to reformat your SD card and re-install leJOS.</p>
-
-<h3 id="useful-information">Useful information <a class="btt" href="#">[top]</a></h3>
-
-<p>While the above discusses all the essentials, there are several points
-that aren’t essential for the first lab but can come in handy later:</p>
-
-<ol>
-  <li>
-    <p>When the EV3 is connected to your laptop, you can control it and get
-data from it. Open Eclipse and navigate to
-<code>leJOS EV3 → Start EV3Control</code>. Click <code>Search</code>, wait for it
-to find your robot, and click <code>Connect</code>.  If your robot doesn’t appear, it either isn’t connected to your laptop or it is being blocked by a firewall, as is the case for the desktop computers in the lab.  There are many useful options available to you, ranging from testing motors and sensors to
-running code or killing a running program. Of particular importance is the <code>Console</code> tab, which shows what’s displayed on the LCD and the output of your program. This means that you can use <code>System.out.println()</code> in your code and have the output on your laptop rather than the small LCD, useful when you need to examine a lot of data (eg, in CSV format). Fig. 9 shows what the console looks like when running the <code>HelloWorld</code> program. Feel free to explore the other tabs as well.</p>
-
-<figure>
-<a href="files/ev3_control.png"><img style="width:70%" src="files/ev3_control.png"></a><br>
-<figcaption>Figure 9: The EV3 control panel.</figcaption>
-</figure> 
-
-  </li>
-  <li>
-    <p>It is possible to run your code on the EV3 with the Java debugger as
-long as the EV3 is connected. The process is exactly the same as
-debugging on your computer, except for the fact that you have to
-choose <code>Debug As → LeJOS EV3 Program</code> instead of
-<code>Java Application</code>.</p>
-  </li>
-  <li>
-    <p>An alternative to Wi-Fi or USB is Bluetooth, although it has limited range. 
-Once you’ve paired the EV3 with your laptop, you can upload code and use the 
-EV3 control panel as you would over Wi-Fi. It may take a while after pairing for 
-your laptop to properly connect to the EV3, though, so you will need to be patient.</p>
-  </li>
-  <li>
-    <p>You can change the EV3’s name via the LCD
-(<code>System → Change name</code>). This can be useful if you don’t know which robot is yours.</p>
-  </li>
-  <li>
-    <p>Documentation for all leJOS functions can be found in the
-<code>Documentation</code> folder in the zip file mentioned in step 1 of <a href="#preparing-your-computer">Section 3</a>. Simply open the <code>index.html</code> file
-within using your favorite browser; the documentation follows the
-standard Javadoc format. Keep in mind that the documentation covers
-all of leJOS, including support for older LEGO products like the NXT
-and RCX so make sure you’re looking at the correct section.</p>
-  </li>
--->
-
-<h2 id="webots">Software - Webots <a class="btt" href="#">[top]</a></h2>
-<hr>
-<p>Webots is a robot simulation framework that we will use to work with virtual robots.</p>
-
-<p><emph>Please note that a lot of the complexity of Webots is abstracted away with the proto files that we provide, but feel free to look at the implementation of the proto files or create your own.  We cover here the minimum amount of information needed to complete the course, but Webots is a fun tool to play with.</emph></p>
 
 
+<h4>Graphics Note:</h4>
+<p>If your hardware is limited, you can improve the performance by adjusting the graphics settings as shown below.
+  In addition, if you experience low framerates on macOS, go to <code>Tools → Preferences → OpenGL</code> and disable Ambiant Occlusion.</p>
 
-<h3 id="webots_preparingYourComputer">Preparing your computer <a class="btt" href="#">[top]</a></h3>
-  To use Webots, the following software needs to be installed to your computer:
-<ul>
- <li><a href="https://cyberbotics.com/"><b>Webots:</b></a><br>Webots is the robot simulation package itself. The installation files can be found on MyCourses.  Note: please use the MyCourses version to ensure the same version is used by everyone.</li>
- <li><a href="https://www.leocad.org/"><b>LeoCad:</b></a><br>LeoCAD is a computer aided design software used to build virtual LEGO assemblies.  It will be used to design the physical appearance of your robots.</li>
- <li><a href="https://www.oracle.com/java/technologies/javase-downloads.html"><b>Java Development Kit (JDK):</b></a><br>As the robot controllers will be developped in Java, the Java Development Kit is required to compile the code.  Webots requires the 64 bits version of the JDK, with a version of 1.8 or higher.</li>
-</ul>
-
-<h4>Linux</h4>
-<p>The Linux version of Webots only needs to be extracted and the executable is in the main folder, no installation required.  Depending on your Linux distribution, both LeoCAD and the JDK should be available through your package manager.  Some linux distributions (ie, debian) packages the parts library for LeoCAD separately as "ldraw-parts".</p>
-<h4>Windows</h4>
-<p>All of the applications should be installed normally.</p>
-<h4>Mac OS</h4>
-<p>All of the applications should be installed normally.  If you experience low framerates, we suggest going to <code>Tools → Preferences → OpenGL</code> and disable Ambiant Occlusion.</p>
-  
+  <figure>
+    <a href="files/Webots_graphics_settings.png"><img style="width:50%" src="files/Webots_graphics_settings.png"></a><br>
+    <figcaption>Figure 9: Webots graphics settings</figcaption>
+  </figure>
   
 <h3 id="webots_overview">Webots Overview <a class="btt" href="#">[top]</a></h3>
 <p>Before we start simulating our own robots, let's look at how Webots works and how to use it.  To do so, we will use one of the example files provided with Webots.</p>
@@ -607,13 +315,15 @@ and RCX so make sure you’re looking at the correct section.</p>
 </ul>
 
 <h4>Console</h4>
-At the bottom of the window is the console.  Both Webots and your controller can print information here. ie, when you use <code>System.out.println(...)</code>, it will be printed to this console.
+At the bottom of the window is the console.  Both Webots and your controller can print information here, ie, when you use <code>System.out.println(...)</code>, it will be printed to this console.
 
 <h4>Text Editor</h4>
-On the right side of the window is the text editor, where you will write your programs.  It is useful to maximize, or un-dock this panel when writing code to get more screen space.  
+On the right side of the window is the text editor, where it is possible to write programs. It is useful to maximize, or un-dock
+this panel when writing code to get more screen space. The text editor is useful if you just want to change something minor in the code,
+like a constant, without switching to Eclipse.
 
 <h4>Scene Tree</h4>
-<p>The panel in the left column is the "Scene Tree", where the world and all objects within it are defined.  Each element in the list is a node, which can be expanded by double-clicking on it, or using the small arrow beside it.  Expanding a node will present the parameters of the node and possibly children nodes.</p>
+<p>The panel in the left column is the "Scene Tree", where the world and all objects within it are defined. Each element in the list is a node, which can be expanded by double-clicking on it, or using the small arrow beside it.  Expanding a node will present the parameters of the node and possibly children nodes.</p>
 
 <p>The first two elements of the scene tree are always the <code>WorldInfo</code> and the <code>Viewpoint</code>.  These cannot be removed from the tree.  The <code>WorldInfo</code> contains global parameters that affect everything in the world, ie, gravity.  The <code>Viewpoint</code> node controls the parameters of the virtual camera that lets you see the simulation in the "3D View" panel.</p>
 
@@ -644,10 +354,19 @@ On the right side of the window is the text editor, where you will write your pr
 
 <hr>
 <h3 id="webots_designingARobot">Designing a Robot <a class="btt" href="#">[top]</a></h3>
-For all work related to this course, we ask that you use the supplied lab projects files to make sure you have all of the required parts in Webots as well as all of the wrapper classes to simulate the LEGO components.  You can unzip the provided project files anywhere as long as it's not within the WeBots installation folder.  Once the project folder is extracted, opening the world file (.wbt) located in the <code>worlds</code> subfolder in WeBots will open the project.  WeBots automatically looks to find the <code>protos</code> and <code>controllers</code> subfolders in the parent folder of the world file.
+For all work related to this course, we ask that you use the supplied lab projects files to make sure you have all of
+the required parts in Webots as well as all of the wrapper classes to simulate the LEGO components.  You can unzip
+the provided project files anywhere as long as it's not within the WeBots installation folder.  Once the project
+folder is extracted, opening the world file (.wbt) located in the <code>worlds</code> subfolder in WeBots will open
+the project.  WeBots automatically looks to find the <code>protos</code> and <code>controllers</code> subfolders in
+the parent folder of the world file.
 
 <h4>Modeling the robot</h4>
-<p>The first step in simulating a robot is to prepare its digital model.  To do so, open LeoCAD and you will get a window similar to the screenshot shown in Figure 11.</p>
+<p>The first step in simulating a robot is to prepare its digital model. To do so, open LeoCAD and you will get a
+  window similar to the screenshot shown in Figure 11. <strong>The steps below show what you need to build for Lab 1.
+  For Lab 0, you can build a simpler robot by adapting these steps to make a robot that has a fixed touch sensor
+  pointing forward, instead of a rotating ultrasonic sensor.
+  </strong></p>
 
 <figure>
 <a href="files/leocad-main.png"><img style="width:70%" src="files/leocad-main.png"></a><br>
@@ -670,20 +389,38 @@ The other 4 panels are:
  <li>Timeline: This is used to create stop motion animations, we will not need this.</li>
 </ul>
 
-<p>It is now time to design a robot by selecting the parts and dragging them to our model.  Note: for the purpose of simulation, it is not required or desired to add every single peg between parts.  Adding these increases the number of triangles that will need to be rendered by the simulator and can slow down the overall simulator, depending on your system.  Note: the wheels that come with kit, and those you should use, are called <strong>"Wheel Rim 20 x 30, 6 Spokes, Ribs with Tyre 43.2 x 26 Balloon Small"</strong> in LeoCAD.  These wheels have a radius of exactly 21.465 cm 😉.  The part defined in the simulator is defined with a value of 21 cm to both keep use a simple round number and to simulate the tires deforming a little bit under the weight of the robot 😉 😉.</p>
+<p>It is now time to design a robot by selecting the parts and dragging them to our model.  Note: for the purpose of
+  simulation, it is not required or desired to add every single peg between parts.  Adding these increases the number
+  of triangles that will need to be rendered by the simulator and can slow down the overall simulator, depending on
+  your system.  Note: the wheels that come with kit, and those you should use, are called <strong>"Wheel Rim 20 x 30,
+  6 Spokes, Ribs with Tyre 43.2 x 26 Balloon Small"</strong> in LeoCAD.  These wheels have a radius of exactly 21.465 cm.
+  The part defined in the simulator is defined with a value of 21 cm to both keep use a simple round number and to
+  simulate the tires deforming a little bit under the weight of the robot 😉.</p>
 
-<p>Once you are done designing your robot, you should have a complete 3D model of your robot.  An example design is given <a href="files/robot.ldr">here</a> and shown in Figure 12.</p>
+<p>Once you are done designing your robot, you should have a complete 3D model of your robot.  An example design is
+  given <a href="files/robot.ldr">here</a> and shown in Figure 12.</p>
 
 <figure>
 <a href="files/leocad-sample.png"><img style="width:70%" src="files/leocad-sample.png"></a><br>
 <figcaption>Figure 12: Sample robot.</figcaption>
 </figure> 
 
-<p>At this point, this design is a static 3D model.  It contains no information about which parts are motors or what their rotation axes are.  Similarly, the sensors are nothing more than empty shells.  To use this 3D model in the simulator and have the parts behave as they should, we need to split the model into its component sub-assemblies.  Anything connected to the main controller is the base assembly, and anything connected to the rotating part of a motor is a sub-assembly.  Each of these assemblies will need to be exported individually from LeoCAD.</p>
+<p>At this point, this design is a static 3D model.  It contains no information about which parts are motors or what
+  their rotation axes are. Similarly, the sensors are nothing more than empty shells.  To use this 3D model in the
+  simulator and have the parts behave as they should, we need to split the model into its component sub-assemblies.
+  Anything connected to the main controller is the base assembly, and anything connected to the rotating part of a
+  motor is a sub-assembly.  Each of these assemblies will need to be exported individually from LeoCAD.</p>
 
-<p>To export a sub-assembly of a robot, it is recommended to start with the whole robot and create a new ldr file (<code>File → Save As</code>) for the sub-assembly.  Doing this keeps the original file with the whole robot intact.  In the newly created ldr file, we can now remove parts that are not in the sub-assembly so that we are left with the desired parts.</p>
+<p>To export a sub-assembly of a robot, it is recommended to start with the whole robot and create a new ldr file
+  (<code>File → Save As</code>) for the sub-assembly.  Doing this keeps the original file with the whole robot intact.
+  In the newly created ldr file, we can now remove parts that are not in the sub-assembly so that we are left with the
+  desired parts.</p>
 
-<p>For the robot shown in Figure 11, the main assembly is shown in Figure 13.  The wheels were removed as they rotate around the axis of the bottom motors, the ultrasonic sensor and its few mounting parts are also removed because they rotate on the top motor.  Not visible in Figure 13 is that the ball caster in the back of the  robot has also been removed as the ball is itself a sub-assembly as it needs to rotate, more on this later.</p>
+<p>For the robot shown in Figure 11, the main assembly is shown in Figure 13.  The wheels were removed as they rotate
+  around the axis of the bottom motors, the ultrasonic sensor and its few mounting parts are also removed because they
+  rotate on the top motor <strong>(which is not needed for Lab 0)</strong>.
+  Not visible in Figure 13 is that the ball caster in the back of the  robot has also been
+  removed as the ball is itself a sub-assembly as it needs to rotate, more on this later.</p>
 
 <figure>
 <a href="files/leocad-mainassembly.png"><img style="width:70%" src="files/leocad-mainassembly.png"></a><br>
@@ -707,7 +444,9 @@ The other 4 panels are:
  <li>Wheels: The wheels that come with kit, the ball-caster, and the old caster are defined.</li>
 </ul>
 
-<p>For this reason, these parts can be removed from the assemblies and we end up with two models that need to be exported from LeoCAD.  Figure 15 shows what these two look like for the sample robot presented in Figure 11.</p>
+<p>For this reason, these parts can be removed from the assemblies and we end up with two models that need to be exported from LeoCAD.
+  Figure 15 shows what these two look like for the sample robot presented in Figure 11.
+  <strong>For Lab 0, you will only need to export one assembly, which will closely resemble the one on the left.</strong></p>
 
 <figure>
 <a href="files/leocad-mainassembly-export.png"><img style="width:55%" src="files/leocad-mainassembly-export.png"></a>
@@ -740,7 +479,9 @@ The other 4 panels are:
 
 <h4>Defining the robot in the simulator</h4>
 
-<p>Before defining the robot, open one of the provided world file.  For this example we will use the world file from the first lab.  Figure 16 shows what the world looks like.</p>
+<p>Before defining the robot, open one of the provided world files. For this example, we will use the world file from
+  the first lab. Figure 16 shows what the world looks like. <strong>The Lab 0 world is very similar, but has a smaller
+  playing field and no blocks.</strong></p>
 
 <figure>
 <a href="files/webots-samplerobot1.png"><img style="width:75%" src="files/webots-samplerobot1.png"></a>
@@ -782,7 +523,21 @@ The other 4 panels are:
 <figcaption>Figure 20: Setting the position of the main assembly.</figcaption>
 </figure> 
 
-<p>We now want to add the motors.  Once again, click on the children node of the robot and click the <img src="files/webots-icon-plus.png"> button.  This time we will select <code>PROTO nodes (Current Project) → Mindstorm → EV3-LargeMotor (Solid)</code> for the EV3 large motors and <code>PROTO nodes (Current Project) → Mindstorm → NXT-Motor (Solid)</code> for the NXT motor.  As before, we will set the rotation and position so that each motor is in the correct location and orientation.  One important parameter of the motors is the "name".  Each motor needs a different name as this is the name you will use in your controller to distinguish between the motors.  <b>Motors need to be called "A", "B", "C", or "D"</b> to match the port where they are connected on the the EV3 brick.  We can also add the color sensor to the robot at this point by adding a <code>PROTO nodes (Current Project) → Mindstorm → EV3-ColorSensor (Solid)</code> node.  We can also add the ball caster at the back of the robot by inserting a <code>PROTO nodes (Current Project) → Mindstorm → BallCaster (Transform)</code> node and positioning it appropriately.  Each sensor also needs a unique name.  <b>Sensors need to be called "S1", "S2", "S3", or "S4"</b> to match the port where they are connected on the the EV3 brick.  You should now have something like Figure 21.</p>
+<p>We now want to add the motors. Once again, click on the children node of the robot and click the
+  <img src="files/webots-icon-plus.png"> button.  This time we will select <code>PROTO nodes (Current Project) →
+  Mindstorm → EV3-LargeMotor (Solid)</code> for the EV3 large motors and <code>PROTO nodes (Current Project) →
+  Mindstorm → NXT-Motor (Solid)</code> for the NXT motor <strong>(the latter is not needed for Lab 0)</strong>.
+  As before, we will set the rotation and position so that
+  each motor is in the correct location and orientation. One important parameter of the motors is the "name". Each
+  motor needs a different name as this is the name you will use in your controller to distinguish between the motors.
+  <b>Motors need to be called "A", "B", "C", or "D"</b> to match the port where they are connected on the the EV3
+  brick. We can also add the color sensor to the robot at this point by adding a <code>PROTO nodes (Current Project)
+  → Mindstorm → EV3-ColorSensor (Solid)</code> node. <strong>For Lab 0, add the touch sensor instead.</strong>
+  We can also add the ball caster at the back of the robot by
+  inserting a <code>PROTO nodes (Current Project) → Mindstorm → BallCaster (Transform)</code> node and positioning
+  it appropriately. Each sensor also needs a unique name. <b>Sensors need to be called "S1", "S2", "S3", or
+  "S4"</b> to match the port where they are connected on the the EV3 brick.  You should now have something like
+  Figure 21.</p>
 
 <figure>
 <a href="files/webots-samplerobot9.png"><img style="width:75%" src="files/webots-samplerobot9.png"></a>
@@ -803,7 +558,9 @@ The other 4 panels are:
 <figcaption>Figure 23: Adding the right wheel and the ultrasonic mount.</figcaption>
 </figure> 
 
-<p>The last thing to do is to add the ultrasonic sensor itself.  Select the children node of the NXT motor and add a new node of type <code>PROTO nodes (Current Project) → Mindstorm → EV3-Ultrasonic (Solid)</code>.  Adjust its position we are almost done building the robot.</p>
+<p><strong>If you are doing Lab 0, skip this step.</strong> The last thing to do is to add the ultrasonic sensor
+  itself. Select the children node of the NXT motor and add a new node of type <code>PROTO nodes (Current Project) →
+  Mindstorm → EV3-Ultrasonic (Solid)</code>, and adjust its position. We are almost done building the robot.</p>
 
 <figure>
 <a href="files/webots-samplerobot12.png"><img style="width:75%" src="files/webots-samplerobot12.png"></a>
@@ -838,11 +595,19 @@ There is no easy way to move your robot from one lab to another from the graphic
 
 <p>For the first few labs, you will be provided with skeleton code, so you will not need to create a controller from scratch.  A set of examples (<a href="files/examples.zip">examples.zip</a>) on how to use each of the simulated devices is provided.  These examples, the skeleton code, as well as the examples presented in class should provide a good overview of how controllers are written.</p>
 
-<p>To select which controller your robot should use, expand your robot node in the world scene tree and select the controller node.  In the selection pane, you can select a controller and click the Edit button to open the Webots built-in editor.  Once the controller is selected, it can compiled by clicking <code>Build → Clean</code>, then  <code>Build → Build</code> in the main menu bar.</p>
+<p>To select which controller your robot should use, expand your robot node in the world scene tree and select the
+  controller node. In the selection pane, you can select a controller and click the Edit button to open the Webots
+  built-in editor (See Fig. 10). Once the controller is selected, it can compiled by clicking <code>Build →
+  Clean</code>, then <code>Build → Build</code> in the main menu bar.</p>
 
 <p>When you want to compile a new version of a controller, it is recommended to reload and rebuild everything as some modifications may not be recompiled properly and some Webots object may not be linked properly otherwise.  To do so, start by saving your world with and reloading it with <img src="files/webots-icon-reload.png">, then click <code>Build → Clean</code>, then <code>Build → Build</code> to rebuild the entire controller and reset the world.  <b>If you notice strange behaviors such as sensors not returning measurements, recompiling and resetting the world a second time usually fixes things.</b></p>
 
-<p>You are allowed to use either the basic built-in text editor provided by WeBots, or any external editor of your choice (ie, eclipse).  However, to prevent issues, it is recommended to build the code from within Webots as it links the code to the webots classes and resets the simulator properly.</p>
+<p>You can use either the basic built-in text editor provided by WeBots, Eclipse, or any other editor of your
+choice (eg, VS Code). However, to prevent issues, it is recommended to build the code from within Webots as it
+links the code to the webots classes and resets the simulator properly. The starter code we provide for the Labs,
+including Lab 0, contain predefined projects for your convenience (see step 4 above for how to set up Eclipse).
+To open a lab in Eclipse, import it as an Eclipse project from archive using the <code>File → Import</code> menu.
+</p>
 
 <!--  In the case of a compilation error, the file and line where the error occurs is printed to the Webots console. -->
 <h4>Device naming</h4>
@@ -876,7 +641,11 @@ There is no easy way to move your robot from one lab to another from the graphic
 
 
 <h3>Porting Code</h3>
-We will now take a look at a simple example to show the basic difference between writing controller code for a real EV3 brick and writing code for a simulated brick.  The following controller, from the lecture notes, has the robot drive in a straight line until the touch sensor detects an obstacle.  The differences between the two programs are highlighted in green.
+We will now take a look at a simple example to show the basic difference between writing controller code for a real EV3
+brick and writing code for a simulated brick. The following controller, from the lecture notes, has the robot drive in
+a straight line until the touch sensor detects an obstacle. The differences between the two programs are highlighted in
+green. Please note that for brevity, this code does not follow all conventions you are expected to follow in this
+course, eg, using Javadoc.<br><br>
 
 
  <table style="width:100%">
@@ -885,88 +654,96 @@ We will now take a look at a simple example to show the basic difference between
     <th><b>Webots</b></th>
   </tr>
   <tr>
-    <td><pre>
-import lejos.hardware.ev3.LocalEV3;
-import lejos.hardware.motor.Motor; 
-import lejos.hardware.port.Port; 
-import lejos.hardware.sensor.EV3TouchSensor; 
-import lejos.hardware.sensor.SensorModes; 
-import lejos.robotics.RegulatedMotor; 
+    <td style="vertical-align:top"><pre>
+package ca.mcgill.ecse211.project;
+
+
+import lejos.hardware.motor.Motor;
+import lejos.hardware.port.SensorPort;
+import lejos.hardware.sensor.EV3TouchSensor;
+import lejos.robotics.RegulatedMotor;
 import lejos.robotics.SampleProvider; 
 
+public class Demo1 {
 
-public class demo1 { 
+  static final int FWDSPEED = 300; // deg/s
 
-static RegulatedMotor leftMotor = Motor.A; 
-static RegulatedMotor rightMotor = Motor.D; 
+  static final RegulatedMotor leftMotor = Motor.A; 
+  static final RegulatedMotor rightMotor = Motor.D; 
 
-static Port portTouch = LocalEV3.get().getPort("S2");
-static SensorModes myTouch = new EV3TouchSensor(portTouch);
-static SampleProvider myTouchStatus = myTouch.getMode(0);
-static float[] sampleTouch = new float[myTouchStatus.sampleSize()];  
+  static SampleProvider touchSensor = new EV3TouchSensor(SensorPort.S2).getTouchMode();
+  static float[] touchSensorSample = new float[touchSensor.sampleSize()]; 
 
-public static final int FWDSPEED = 200;
+  public static void main(String args[]) { 
 
-public static void main(String args[]) { 
+    
 
-
-  leftMotor.setSpeed(FWDSPEED);
-  rightMotor.setSpeed(FWDSPEED);
-  leftMotor.forward();
-  rightMotor.forward();
-  while (true) {
-  
-  
-    myTouchStatus.fetchSample(sampleTouch,0);
-    if (sampleTouch[0] == 1) break;
-  }
-  
-  
-  
-  
-  System.exit(0);
-  }
-}
-    </pre></td>
-    <td><pre>
-import simlejos.hardware.ev3.LocalEV3;
-import simlejos.hardware.motor.Motor;
-import simlejos.hardware.port.Port;
-import simlejos.hardware.sensor.EV3TouchSensor;
-import simlejos.hardware.sensor.SensorModes;
-import simlejos.robotics.RegulatedMotor;
-import simlejos.robotics.SampleProvider;
-<mark style="background-color:#81cc81;">import simlejos.executionController;</mark>
-
-public class demo1 {
-
-static RegulatedMotor leftMotor = Motor.A;
-static RegulatedMotor rightMotor = Motor.D;
-
-static Port portTouch = LocalEV3.get().getPort("S2");
-static SensorModes myTouch = new EV3TouchSensor(portTouch);
-static SampleProvider myTouchStatus = myTouch.getMode(0);
-static float[] sampleTouch = new float[myTouchStatus.sampleSize()];  
-
-public static final int FWDSPEED = 200;
-
-  public static void main(String[] args) {
-    <mark style="background-color:#81cc81;">//Need to define how many threads are synchronized to simulation steps</mark>
-    <mark style="background-color:#81cc81;">executionController.setNumberOfParties(1);</mark>
     leftMotor.setSpeed(FWDSPEED);
     rightMotor.setSpeed(FWDSPEED);
     leftMotor.forward();
     rightMotor.forward();
-    while (true) {
-      <mark style="background-color:#81cc81;">//Need to explicitly perform the physics step</mark>
-      <mark style="background-color:#81cc81;">executionController.performPhysicsStep();</mark>
-      myTouchStatus.fetchSample(sampleTouch, 0);
-      if (sampleTouch[0] == 1) break;
+    
+    while (touchSensorSample[0] != 1) {
+      <mark style="background-color:#f6f1bf;">/* In both lejos and simlejos, update touchSensorSample by fetching a sample from</mark>
+      <mark style="background-color:#f6f1bf;"> * the touch sensor provider and storing in touchSensorSample at index 0.</mark>
+      <mark style="background-color:#f6f1bf;"> * </mark>
+      <mark style="background-color:#f6f1bf;"> * Equivalent pseudocode: touchSensorSample = touchSensor.fetchSample() */</mark>
+      touchSensor.fetchSample(touchSensorSample, 0);
     }
-    <mark style="background-color:#81cc81;">leftMotor.stop();</mark>
-    <mark style="background-color:#81cc81;">rightMotor.stop();</mark>
-    <mark style="background-color:#81cc81;">//Need to perform a step for the stop to be registered</mark>
-    <mark style="background-color:#81cc81;">executionController.performPhysicsStep();</mark>
+    
+    
+    
+    
+    
+    
+
+    System.exit(0);
+  }
+}
+    </pre></td>
+    <td style="vertical-align:top"><pre>
+package ca.mcgill.ecse211.project;
+
+<mark style="background-color:#aee2ae;">import simlejos.ExecutionController;</mark>
+import <mark style="background-color:#aee2ae;">simlejos</mark>.hardware.motor.Motor;
+import <mark style="background-color:#aee2ae;">simlejos</mark>.hardware.port.SensorPort;
+import <mark style="background-color:#aee2ae;">simlejos</mark>.hardware.sensor.EV3TouchSensor;
+import <mark style="background-color:#aee2ae;">simlejos</mark>.robotics.RegulatedMotor;
+import <mark style="background-color:#aee2ae;">simlejos</mark>.robotics.SampleProvider;
+
+public class Demo1 {
+
+  static final int FWDSPEED = 300; // deg/s
+
+  static final RegulatedMotor leftMotor = Motor.A; 
+  static final RegulatedMotor rightMotor = Motor.D; 
+
+  static SampleProvider touchSensor = new EV3TouchSensor(SensorPort.S2).getTouchMode();
+  static float[] touchSensorSample = new float[touchSensor.sampleSize()]; 
+
+  public static void main(String[] args) {
+    <mark style="background-color:#aee2ae;">// Need to define how many threads are synchronized to simulation steps</mark>
+    <mark style="background-color:#aee2ae;">ExecutionController.setNumberOfParties(1);</mark>
+
+    leftMotor.setSpeed(FWDSPEED);
+    rightMotor.setSpeed(FWDSPEED);
+    leftMotor.forward();
+    rightMotor.forward();
+
+    while (touchSensorSample[0] != 1) {
+      <mark style="background-color:#aee2ae;">// Need to explicitly perform the physics step</mark>
+      <mark style="background-color:#aee2ae;">ExecutionController.performPhysicsStep();</mark>
+      
+
+      touchSensor.fetchSample(touchSensorSample, 0);
+    }
+    
+    <mark style="background-color:#aee2ae;">leftMotor.stop();</mark>
+    <mark style="background-color:#aee2ae;">rightMotor.stop();</mark>
+    
+    <mark style="background-color:#aee2ae;">// Need to perform a step for the stop to be registered</mark>
+    <mark style="background-color:#aee2ae;">ExecutionController.performPhysicsStep();</mark>
+    
     System.exit(0);
   }
 }
@@ -975,16 +752,10 @@ public static final int FWDSPEED = 200;
   </tr>
 </table> 
 
-The main difference between the two version is the addition of the <code>executionController</code> which allows the controller to interface and synchronize with the simulator.  The other change is the addition of the motor stopping lines at the end.  When a controller exits in the real LeJOS environment, all of the devices are reset.  This is not the case in Webots, so it the motors are running when the controller exits, they will keep running.
+The main difference between the two version is the addition of the <code>ExecutionController</code> which allows the controller to interface and synchronize with the simulator.  The other change is the addition of the motor stopping lines at the end.  When a controller exits in the real LeJOS environment, all of the devices are reset.  This is not the case in Webots, so it the motors are running when the controller exits, they will keep running.
 
 <h2 id="submissionInstructions">Submission Instructions <a class="btt" href="#">[top]</a></h2>
-To submit your work, you should compress your project folder as a zip file.  Your project folder should contain (at least) the following subfolders:
-
-<ul>
-<li><b>controllers:</b><br>This should include all of the code for your robot.</li>
-<li><b>protos:</b><br>This should contain (at least) all the proto files required to simulate your robot.</li>
-<li><b>world:</b><br>This should contain the provided world file, with the addition of your robot.</li>
-</ul>
+Please consult the submissions instructions on MyCourses and for each lab. You do not need to submit Lab 0 as it is not graded.<br><br>
 
 <p style="font-size:0.8em">© Instructor and Teaching Assistant generated course materials (e.g., handouts, notes, summaries, assignments, exam questions, etc.) are protected by law and may not be copied or distributed in any form or in any medium without explicit permission of the instructor. Note that infringements of copyright can be subject to follow up by the University under the Code of Student Conduct and Disciplinary Procedures.</p>
 </div>
@@ -993,3 +764,4 @@ To submit your work, you should compress your project folder as a zip file.  You
 </html>
 
 
+ 
